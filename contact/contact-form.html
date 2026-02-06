@@ -1,0 +1,45 @@
+<section class="contact-us" id="contact">
+  <div class="container">
+    <h2 class="section-title">Contact Us</h2>
+    <p style="text-align: center; color: var(--text-muted); margin-bottom: 50px; font-size: 18px;">
+      Have questions? Reach out to us and we'll get back to you shortly.
+    </p>
+
+    <div class="contact-grid">
+      <form class="contact-form" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+        <input 
+          type="text" 
+          formControlName="name" 
+          placeholder="Your Name" 
+          required
+          [class.error]="isFieldInvalid('name')">
+        
+        <input 
+          type="email" 
+          formControlName="email" 
+          placeholder="Your Email" 
+          required
+          [class.error]="isFieldInvalid('email')">
+        
+        <textarea 
+          formControlName="message" 
+          rows="5" 
+          placeholder="Your Message" 
+          required
+          [class.error]="isFieldInvalid('message')">
+        </textarea>
+        
+        <button type="submit" [disabled]="isSubmitting">
+          {{ isSubmitting ? 'Sending...' : 'Send Message' }}
+        </button>
+      </form>
+
+      <div class="contact-info">
+        <h4>Our Contact Info</h4>
+        <p>📧 support@budgetify.com</p>
+        <p>📞 +91 8888888888</p>
+        <p>📍 ITP Cypress, Hinjewadi, Pune, India</p>
+      </div>
+    </div>
+  </div>
+</section>
