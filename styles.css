@@ -1,0 +1,69 @@
+/* You can add global styles to this file, and also import other style files */
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* Light Blue Theme */
+  --bg-primary: #f0f9ff;
+  --bg-secondary: #e0f2fe;
+  --bg-accent: #bae6fd;
+  
+  /* Blues */
+  --blue-50: #f0f9ff;
+  --blue-100: #e0f2fe;
+  --blue-200: #bae6fd;
+  --blue-300: #7dd3fc;
+  --blue-400: #38bdf8;
+  --blue-500: #0ea5e9;
+  --blue-600: #0284c7;
+  --blue-700: #0369a1;
+  --blue-800: #075985;
+  
+  /* Accents */
+  --accent-cyan: #06b6d4;
+  --accent-teal: #14b8a6;
+  --accent-purple: #8b5cf6;
+  
+  /* Text */
+  --text-primary: #0c4a6e;
+  --text-secondary: #0369a1;
+  --text-muted: #64748b;
+  
+  /* Glass effects */
+  --glass-light: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(14, 165, 233, 0.2);
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(14, 165, 233, 0.1);
+  --shadow-md: 0 4px 16px rgba(14, 165, 233, 0.15);
+  --shadow-lg: 0 8px 32px rgba(14, 165, 233, 0.2);
+}
+
+/* =========================
+   RESET & BASE
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(135deg, var(--blue-50) 0%, var(--blue-100) 50%, var(--blue-200) 100%);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
