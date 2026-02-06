@@ -1,0 +1,135 @@
+<!-- NAVBAR -->
+<header>
+  <div class="container nav">
+    <h1 class="logo">Budgetify</h1>
+    <nav class="nav-right">
+      <a [routerLink]="['/about']">About Us</a>
+      <a href="https://www.ft.com/personal-finance" target="_blank">Personal Finance</a>
+      <a [routerLink]="['/login']" class="btn">Login</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <video autoplay muted loop playsinline preload="auto">
+    <source src="assets/videos/mm.mp4" type="video/mp4">
+  </video>
+  <div class="hero-content container">
+    <div class="hero-text">
+      <h2>
+        Money clarity<br>
+        starts <span>today</span>
+      </h2>
+      <p>
+        Budgetify helps you understand, control, and grow your money —
+        without spreadsheets, stress, or guesswork.
+      </p>
+      <a [routerLink]="['/login']" class="btn">Create Free Account</a>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<section class="features container">
+  <div class="feature-grid">
+    <div class="feature-card">
+      <h4>💳 All Accounts, One View</h4>
+      <p>Track spending, savings, and investments in one unified dashboard.</p>
+    </div>
+    <div class="feature-card">
+      <h4>🔒 Privacy First</h4>
+      <p>Your data stays yours. No ads. No selling. Ever.</p>
+    </div>
+    <div class="feature-card">
+      <h4>📈 Built for Growth</h4>
+      <p>Designed to help you save more and spend smarter every month.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STORY SECTION -->
+<section class="story-section">
+  <div class="container story-content">
+    <h3>
+      Ever wonder where your money<br>
+      <span>actually goes?</span>
+    </h3>
+    <p>
+      You earn. You spend. But somehow, at the end of the month,
+      there's confusion instead of confidence.
+    </p>
+    <p>
+      Budgetify replaces guesswork with clarity —
+      so every rupee has a purpose and every decision feels intentional.
+    </p>
+  </div>
+</section>
+
+<!-- FEATURES DEEP DIVE -->
+<section class="features container">
+  <h3 class="section-title">Everything you need to stay in control</h3>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <h4>Smart Expense Tracking</h4>
+      <p>
+        Automatically categorize expenses and instantly see where your
+        money actually goes.
+      </p>
+    </div>
+    <div class="feature-card">
+      <h4>Flexible Budgets</h4>
+      <p>
+        Create monthly budgets that adapt to real life —
+        not rigid limits that fail mid-month.
+      </p>
+    </div>
+    <div class="feature-card">
+      <h4>Net Worth Dashboard</h4>
+      <p>
+        Track assets, liabilities, and long-term growth in one clean view.
+      </p>
+    </div>
+    <div class="feature-card">
+      <h4>Goal Planning</h4>
+      <p>
+        Save for emergencies, vacations, or big milestones
+        with clear progress tracking.
+      </p>
+    </div>
+    <div class="feature-card">
+      <h4>Monthly Insights</h4>
+      <p>
+        Understand trends, habits, and opportunities to improve every month.
+      </p>
+    </div>
+    <div class="feature-card">
+      <h4>Designed for Peace of Mind</h4>
+      <p>
+        Minimal design, powerful insights — no clutter, no confusion.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="cta-section">
+  <div class="container cta-content">
+    <h2>
+      Your money.<br>
+      Finally working for you.
+    </h2>
+    <p>
+      Join people who stopped guessing and started growing.
+    </p>
+    <a [routerLink]="['/login']" class="btn">Start Free Today</a>
+  </div>
+</section>
+
+<!-- CONTACT US SECTION -->
+<app-contact-form></app-contact-form>
+
+<!-- FOOTER -->
+<footer>
+  © All Rights Reserved 2026 @Budgetify | Smart Budgeting Tool | The Unicorn Team
+</footer>
