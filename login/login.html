@@ -1,0 +1,280 @@
+<div class="page-center">
+    <div class="container">
+    <div class="logo">💰 Budgetify</div>
+    
+    <!-- Welcome Screen -->
+    <div class="welcome-screen" id="welcomeScreen">
+        <div class="gradient-circle"></div>
+        <h1 class="welcome-text">Welcome</h1>
+    </div>
+
+    <!-- Auth Screen -->
+    <div class="auth-screen" id="authScreen">
+        <!-- Left Side - Slideshow -->
+        <div class="auth-left">
+        <div class="slideshow">
+            <div class="slide" [class.active]="currentSlide === 0">
+            <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=600&h=800&fit=crop" alt="Finance">
+            <div class="slide-content">
+                <h3>Track Your Expenses</h3>
+                <p>Monitor every rupee with ease</p>
+            </div>
+            </div>
+            <div class="slide" [class.active]="currentSlide === 1">
+            <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&h=800&fit=crop" alt="Savings">
+            <div class="slide-content">
+                <h3>Smart Savings</h3>
+                <p>Build wealth systematically</p>
+            </div>
+            </div>
+            <div class="slide" [class.active]="currentSlide === 2">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=800&fit=crop" alt="Analytics">
+            <div class="slide-content">
+                <h3>Financial Insights</h3>
+                <p>Data-driven decisions</p>
+            </div>
+            </div>
+            <div class="slide" [class.active]="currentSlide === 3">
+            <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&h=800&fit=crop" alt="Goals">
+            <div class="slide-content">
+                <h3>Achieve Goals</h3>
+                <p>Plan your financial future</p>
+            </div>
+            </div>
+        </div>
+
+        <div class="slide-dots">
+            <span class="dot" 
+                *ngFor="let slide of [0,1,2,3]" 
+                [class.active]="currentSlide === slide"
+                (click)="setSlide(slide)"></span>
+        </div>
+        </div>
+
+        <!-- Right Side - Forms -->
+        <div class="auth-right">
+        <!-- ============================================ -->
+        <!-- LOGIN FORM -->
+        <!-- ============================================ -->
+        <div class="form-container" *ngIf="currentForm === 'login'">
+            <h2>Welcome Back!</h2>
+            <p class="form-subtitle">Log in to manage your finances</p>
+            
+            <form [formGroup]="loginForm" (ngSubmit)="login()" class="auth-form">
+            <div class="form-group">
+                <label>Email</label>
+                <div class="input-wrapper">
+                <input type="email" formControlName="email" placeholder="your@email.com" required>
+                <span class="input-icon">📧</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <div class="input-wrapper">
+                <input [type]="showLoginPassword ? 'text' : 'password'" 
+                        formControlName="password" 
+                        placeholder="Enter your password" required>
+                <span class="input-icon toggle-password" 
+                        (click)="showLoginPassword = !showLoginPassword">
+                    {{showLoginPassword ? '👁️' : '👁️‍🗨️'}}
+                </span>
+                </div>
+            </div>
+
+            <a href="#" class="forgot-link" (click)="switchForm('forgot'); $event.preventDefault()">Forgot Password?</a>
+
+            <button type="submit" class="auth-btn" [disabled]="loading">
+                <span *ngIf="!loading">Log In</span>
+                <span *ngIf="loading">Logging in...</span>
+            </button>
+            </form>
+
+            <div class="signup-link">
+            Don't have an account? <a href="#" (click)="switchForm('register'); $event.preventDefault()">Sign Up</a>
+            </div>
+            <div class="home-link">
+            Go back to <a [routerLink]="['/']">Home</a>
+            </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- REGISTER FORM -->
+        <!-- ============================================ -->
+        <div class="form-container" *ngIf="currentForm === 'register'">
+            <h2>Create Account</h2>
+            <p class="form-subtitle">Start your financial journey</p>
+            
+            <form [formGroup]="registerForm" (ngSubmit)="register()" class="auth-form">
+            <div class="form-row">
+                <div class="form-group">
+                <label>Full Name</label>
+                <div class="input-wrapper">
+                    <input type="text" formControlName="name" placeholder="John Doe" required>
+                    <span class="input-icon">👤</span>
+                </div>
+                </div>
+
+                <div class="form-group">
+                <label>Email</label>
+                <div class="input-wrapper">
+                    <input type="email" formControlName="email" placeholder="your@email.com" required>
+                    <span class="input-icon">📧</span>
+                </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                <label>Password</label>
+                <div class="input-wrapper">
+                    <input [type]="showRegPassword ? 'text' : 'password'" 
+                        formControlName="password" 
+                        placeholder="Create password" required>
+                    <span class="input-icon toggle-password" 
+                        (click)="showRegPassword = !showRegPassword">
+                    {{showRegPassword ? '👁️' : '👁️‍🗨️'}}
+                    </span>
+                </div>
+                </div>
+
+                <div class="form-group">
+                <label>Account Type</label>
+                <div class="input-wrapper">
+                    <select formControlName="type" required>
+                    <option value="">Select type</option>
+                    <option value="personal">Personal</option>
+                    <option value="business">Business</option>
+                    <option value="family">Family</option>
+                    </select>
+                    <span class="input-icon">📊</span>
+                </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                <label>Phone Number</label>
+                <div class="input-wrapper">
+                    <input type="tel" formControlName="phone" placeholder="+91 98765 43210" required>
+                    <span class="input-icon">📱</span>
+                </div>
+                </div>
+
+                <div class="form-group">
+                <label>Telegram ID (Optional)</label>
+                <div class="input-wrapper">
+                    <input type="text" formControlName="telegram_chat_id" placeholder="@username">
+                    <span class="input-icon">✈️</span>
+                </div>
+                </div>
+            </div>
+
+            <button type="submit" class="auth-btn" [disabled]="loading">
+                <span *ngIf="!loading">Create Account</span>
+                <span *ngIf="loading">Creating...</span>
+            </button>
+            </form>
+
+            <div class="signup-link">
+            Already have an account? <a href="#" (click)="switchForm('login'); $event.preventDefault()">Log In</a>
+            </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- STEP 1: FORGOT PASSWORD FORM -->
+        <!-- ============================================ -->
+        <div class="form-container" *ngIf="currentForm === 'forgot'">
+            <h2>Reset Password</h2>
+            <p class="form-subtitle">We'll send an OTP to your Telegram</p>
+            
+            <form [formGroup]="forgotForm" (ngSubmit)="forgotPassword()" class="auth-form">
+            <div class="form-group">
+                <label>Email Address</label>
+                <div class="input-wrapper">
+                <input type="email" formControlName="email" placeholder="your@email.com" required>
+                <span class="input-icon">📧</span>
+                </div>
+            </div>
+
+            <button type="submit" class="auth-btn" [disabled]="loading">
+                <span *ngIf="!loading">Send OTP</span>
+                <span *ngIf="loading">Sending...</span>
+            </button>
+            </form>
+
+            <div class="signup-link">
+            <a href="#" (click)="switchForm('login'); $event.preventDefault()">← Back to Login</a>
+            </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- STEP 2: OTP VERIFICATION FORM -->
+        <!-- ============================================ -->
+        <div class="form-container" *ngIf="currentForm === 'otp'">
+            <h2>Verify OTP</h2>
+            <p class="form-subtitle">Enter the 6-digit code sent to your Telegram</p>
+            
+            <form [formGroup]="otpForm" (ngSubmit)="verifyOTPStep()" class="auth-form">
+            <div class="form-group">
+                <label>OTP Code</label>
+                <div class="input-wrapper">
+                <input type="text" formControlName="otp" placeholder="000000" maxlength="6" required>
+                <span class="input-icon">🔑</span>
+                </div>
+            </div>
+
+            <button type="submit" class="auth-btn" [disabled]="loading">
+                <span *ngIf="!loading">Verify OTP</span>
+                <span *ngIf="loading">Verifying...</span>
+            </button>
+            </form>
+
+            <div class="signup-link">
+            <a href="#" (click)="switchForm('forgot'); $event.preventDefault()">← Resend OTP</a> | 
+            <a href="#" (click)="switchForm('login'); $event.preventDefault()">Back to Login</a>
+            </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- STEP 3: RESET PASSWORD FORM -->
+        <!-- ============================================ -->
+        <div class="form-container" *ngIf="currentForm === 'resetPassword'">
+            <h2>Set New Password</h2>
+            <p class="form-subtitle">Create a strong password for your account</p>
+            
+            <form [formGroup]="resetPasswordForm" (ngSubmit)="resetPassword()" class="auth-form">
+            <div class="form-group">
+                <label>New Password</label>
+                <div class="input-wrapper">
+                <input [type]="showNewPassword ? 'text' : 'password'" 
+                        formControlName="new_password" 
+                        placeholder="Enter your new password" 
+                        required
+                        minlength="3">
+                <span class="input-icon toggle-password" 
+                        (click)="showNewPassword = !showNewPassword">
+                    {{showNewPassword ? '👁️' : '👁️‍🗨️'}}
+                </span>
+                </div>
+            </div>
+
+            <button type="submit" class="auth-btn" [disabled]="loading">
+                <span *ngIf="!loading">Reset Password</span>
+                <span *ngIf="loading">Resetting...</span>
+            </button>
+            </form>
+
+            <div class="signup-link">
+            <a href="#" (click)="switchForm('login'); $event.preventDefault()">← Back to Login</a>
+            </div>
+        </div>
+
+        <!-- Alert Messages -->
+        <div class="alert alert-{{alert.type}}" *ngIf="alert.show">
+            {{alert.message}}
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
